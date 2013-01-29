@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EBFE4F5B-161E-436D-9BC8-5AD746FE85F1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyGame</RootNamespace>
+    <AssemblyName>MyGame</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MyGame.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MyGameClass.cs" />
+    <Compile Include="MyGameObjects\CameraObject.cs" />
+    <Compile Include="MyGameObjects\ModularSkeleton.cs" />
+    <Compile Include="MyGameObjects\Platform.cs" />
+    <Compile Include="MyGameObjects\Player.cs" />
+    <Compile Include="MyGameObjects\SpriteSkeleton.cs" />
+    <Compile Include="MyGameObjects\Tile.cs" />
+    <Compile Include="MyLevel.cs" />
+    <Compile Include="MyObjectProcessor.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Windows">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\MonoGame.Framework.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\Tao.Sdl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Animations\ModularAnimations\SkeletonHead.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\SkeletonBody.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\LeftArm.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\RightArm.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\RightLeg.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\LeftLeg.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\TopLeftLeg.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\TopRightLeg.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\TopRightArm.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\ModularAnimations\TopLeftArm.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\SpriteAnimations\Animation1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\SpriteAnimations\SkeletalSpriteAnimation.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\babyface_1_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\babyface_1_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\babyface_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\babyface_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\drawing_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\drawing_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\gingerman_b_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\gingerman_b_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_2_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_2_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_3_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_3_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_4_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_4_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_5_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_5_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_6_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_6_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_7_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_7_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_8 _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipop_8 _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipo_1_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\lollipo_1_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\nutcracker_b _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\nutcracker_b _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_1_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_1_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_2 _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_2 _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\random toy_b_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\swedish horse_b_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\swedish horse_b_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\teddy bear_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\teddy bear_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\wooden horse_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\background porps\wooden horse_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_apple _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_apple _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_bunny _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_bunny _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_butterfly _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_butterfly _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_butterfly_2 _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_butterfly_2 _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_cat _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_cat _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_dog _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_dog _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_house _boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_house _boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_sideway_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_sideway_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_sun_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\cloud\cloud_sun_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\foreground  porps\nutcracker_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\foreground  porps\nutcracker_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\foreground  porps\swedish horse_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\foreground  porps\swedish horse_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\mist_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\mist_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\sky_boss stage.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\sky_boss stage_GREY.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\water.png" />
+    <Content Include="Content\Graphics\tiles\level1\BossPart\sky,mist and water\water_GREY.png" />
+    <Content Include="Content\Levels\TheMeadowPart1FixedGrass.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\circleSprite.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orujin\Orujin.csproj">
+      <Project>{a172343c-341d-45c0-9d00-b7b6a630b900}</Project>
+      <Name>Orujin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\groundSprite.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\Level1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\light.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\Test.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Graphics\tiles\level1\background porps\babyface.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\babyface_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\drawing.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\gingerman_b.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_4.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_5.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_6.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_7.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipop_8.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\lollipo_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\nutcracker_b.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\random toy_b_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\random toy_b_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\random toy_b_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\swedish horse_b.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\teddy bear.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\background porps\wooden horse.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_apple.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_bunny.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_butterfly.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_butterfly_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_cat.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_dog.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_house.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_sideway.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\cloud\cloud_sun.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\bridge_3_boss stage.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\bridge_long.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\bridge_short.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\deer.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\deer_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\dog.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\dog_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\fish.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\fish_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_1_boss stage.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_1_boss stage_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_1_boss stage_very_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_2 _boss stage.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_2 _boss stage_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\floating platform_2 _boss stage_very_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\flower_blue.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\flower_orange.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\flower_pink.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\flower_yellow.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\grass_mid.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\grass_mid_smaller.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\grass_short.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\grass_short_smaller.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\ground_long.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\ground_long_faded.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\ground_mid.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\ground_short.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\handle.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\island_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\island_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\island_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\penguin.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\penguin_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\plat form.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\side_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\side_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\side_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\side_4.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\toy_crown.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\toy_duck.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\white ball.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\white ball_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground\windmill.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\ballon_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\ballon_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\floating doll.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\floating doll_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\gate_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\gate_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\gate_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\gingerman.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\gingerman_sad.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\nutcracker.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\random toy.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\random toy_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\random toy_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\rope_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\rope_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\Street Light.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\swedish horse.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_4.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_5.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\toyblock_6.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_1.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_1_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_2.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_2_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_3.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_3_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_4.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_head.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_head_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_link.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\foreground_porps\train_link_small.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\sky_mist_and_water\mist.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\sky_mist_and_water\mist_boss stage.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Graphics\tiles\level1\sky_mist_and_water\sky.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\SkeletonSpriteSheet.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Textures\Skeleton\Body.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\Head.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\LeftArm.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\RightLeg.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\RightArm.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\LeftLeg.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\TopLeftArm.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\TopRightLeg.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\TopRightArm.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Skeleton\TopLeftLeg.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A172343C-341D-45C0-9D00-B7B6A630B900}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orujin</RootNamespace>
+    <AssemblyName>Orujin</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E0B51F1B3AFAD92735424B11D024177499B7E487</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Orujin_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Core\Camera\Camera.cs" />
+    <Compile Include="Core\Input\MouseManager.cs" />
+    <Compile Include="Core\Logic\ConditionManager.cs" />
+    <Compile Include="Core\Physics\PixelCollisionManager.cs" />
+    <Compile Include="Core\GameHelp\DynamicArray.cs" />
+    <Compile Include="Core\Input\InputManager.cs" />
+    <Compile Include="Core\Logic\GameObjectManager.cs" />
+    <Compile Include="Core\GameHelp\CONST.cs" />
+    <Compile Include="Core\GameHelp\GameFloat.cs" />
+    <Compile Include="Core\Camera\CameraManager.cs" />
+    <Compile Include="Core\Physics\Collision\Collision.cs" />
+    <Compile Include="Core\Physics\Collision\Distance.cs" />
+    <Compile Include="Core\Physics\Collision\DynamicTree.cs" />
+    <Compile Include="Core\Physics\Collision\DynamicTreeBroadPhase.cs" />
+    <Compile Include="Core\Physics\Collision\IBroadPhase.cs" />
+    <Compile Include="Core\Physics\Collision\QuadTree.cs" />
+    <Compile Include="Core\Physics\Collision\QuadTreeBroadPhase.cs" />
+    <Compile Include="Core\Physics\Collision\Shapes\CircleShape.cs" />
+    <Compile Include="Core\Physics\Collision\Shapes\EdgeShape.cs" />
+    <Compile Include="Core\Physics\Collision\Shapes\LoopShape.cs" />
+    <Compile Include="Core\Physics\Collision\Shapes\PolygonShape.cs" />
+    <Compile Include="Core\Physics\Collision\Shapes\Shape.cs" />
+    <Compile Include="Core\Physics\Collision\TimeOfImpact.cs" />
+    <Compile Include="Core\Physics\Common\ConvexHull\ChainHull.cs" />
+    <Compile Include="Core\Physics\Common\ConvexHull\GiftWrap.cs" />
+    <Compile Include="Core\Physics\Common\ConvexHull\Melkman.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\BayazitDecomposer.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDTDecomposer.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\DelaunayTriangle.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFront.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFrontNode.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweep.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepConstraint.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepContext.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepPointComparator.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Delaunay\Sweep\PointOnEdgeException.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\ITriangulatable.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Orientation.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Polygon\Polygon.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Polygon\PolygonPoint.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Polygon\PolygonSet.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Sets\ConstrainedPointSet.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Sets\PointSet.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\TriangulationConstraint.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\TriangulationContext.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\TriangulationMode.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\TriangulationPoint.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\TriangulationUtil.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Util\FixedArray3.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Util\FixedBitArray3.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Util\PointGenerator.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\CDT\Util\PolygonGenerator.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\EarclipDecomposer.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\FlipcodeDecomposer.cs" />
+    <Compile Include="Core\Physics\Common\Decomposition\SeidelDecomposer.cs" />
+    <Compile Include="Core\Physics\Common\FixedArray.cs" />
+    <Compile Include="Core\Physics\Common\HashSet.cs" />
+    <Compile Include="Core\Physics\Common\LineTools.cs" />
+    <Compile Include="Core\Physics\Common\Math.cs" />
+    <Compile Include="Core\Physics\Common\Path.cs" />
+    <Compile Include="Core\Physics\Common\PathManager.cs" />
+    <Compile Include="Core\Physics\Common\PhysicsLogic\Explosion.cs" />
+    <Compile Include="Core\Physics\Common\PhysicsLogic\PhysicsLogic.cs" />
+    <Compile Include="Core\Physics\Common\PolygonManipulation\CuttingTools.cs" />
+    <Compile Include="Core\Physics\Common\PolygonManipulation\SimplifyTools.cs" />
+    <Compile Include="Core\Physics\Common\PolygonManipulation\YuPengClipper.cs" />
+    <Compile Include="Core\Physics\Common\PolygonTools.cs" />
+    <Compile Include="Core\Physics\Common\Serialization.cs" />
+    <Compile Include="Core\Physics\Common\TextureTools\MarchingSquares.cs" />
+    <Compile Include="Core\Physics\Common\TextureTools\MSTerrain.cs" />
+    <Compile Include="Core\Physics\Common\TextureTools\TextureConverter.cs" />
+    <Compile Include="Core\Physics\Common\Vertices.cs" />
+    <Compile Include="Core\Physics\Controllers\AbstractForceController.cs" />
+    <Compile Include="Core\Physics\Controllers\BuoyancyController.cs" />
+    <Compile Include="Core\Physics\Controllers\Controller.cs" />
+    <Compile Include="Core\Physics\Controllers\GravityController.cs" />
+    <Compile Include="Core\Physics\Controllers\SimpleWindForce.cs" />
+    <Compile Include="Core\Physics\Controllers\VelocityLimitController.cs" />
+    <Compile Include="Core\Physics\DebugView.cs" />
+    <Compile Include="Core\Physics\Dynamics\Body.cs" />
+    <Compile Include="Core\Physics\Dynamics\BreakableBody.cs" />
+    <Compile Include="Core\Physics\Dynamics\ContactManager.cs" />
+    <Compile Include="Core\Physics\Dynamics\Contacts\Contact.cs" />
+    <Compile Include="Core\Physics\Dynamics\Contacts\ContactSolver.cs" />
+    <Compile Include="Core\Physics\Dynamics\Fixture.cs" />
+    <Compile Include="Core\Physics\Dynamics\Island.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\AngleJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\DistanceJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedAngleJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedDistanceJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedFrictionJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedLineJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedMouseJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedPrismaticJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FixedRevoluteJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\FrictionJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\GearJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\Joint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\LineJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\PrismaticJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\PulleyJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\RevoluteJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\RopeJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\SliderJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\Joints\WeldJoint.cs" />
+    <Compile Include="Core\Physics\Dynamics\TimeStep.cs" />
+    <Compile Include="Core\Physics\Dynamics\World.cs" />
+    <Compile Include="Core\Physics\Dynamics\WorldCallbacks.cs" />
+    <Compile Include="Core\Physics\Factories\BodyFactory.cs" />
+    <Compile Include="Core\Physics\Factories\FixtureFactory.cs" />
+    <Compile Include="Core\Physics\Factories\JointFactory.cs" />
+    <Compile Include="Core\Physics\Factories\LinkFactory.cs" />
+    <Compile Include="Core\Physics\Settings.cs" />
+    <Compile Include="Core\Renderer\IRendererInterface.cs" />
+    <Compile Include="Core\Renderer\RenderComponents\Sprite.cs" />
+    <Compile Include="Core\Renderer\Renderer.cs" />
+    <Compile Include="Core\Renderer\RendererManager.cs" />
+    <Compile Include="Core\Renderer\RenderComponents\ModularAnimation.cs" />
+    <Compile Include="Core\Renderer\RenderComponents\SpriteAnimation.cs" />
+    <Compile Include="Core\Renderer\RenderComponents\RendererComponents.cs" />
+    <Compile Include="Debug\DebugManager.cs" />
+    <Compile Include="Debug\FarseerDebugView.cs" />
+    <Compile Include="Debug\PrimitiveBatch.cs" />
+    <Compile Include="Framework\GameEventCondition.cs" />
+    <Compile Include="Framework\GameEvent.cs" />
+    <Compile Include="Framework\GameManager.cs" />
+    <Compile Include="Framework\GameObject.cs" />
+    <Compile Include="Framework\OrujinLevel.cs" />
+    <Compile Include="Framework\Menu.cs" />
+    <Compile Include="Framework\OrujinGame.cs" />
+    <Compile Include="Framework\Trigger.cs" />
+    <Compile Include="Orujin.cs" />
+    <Compile Include="Pipeline\LevelLoader.cs" />
+    <Compile Include="Pipeline\ModularAnimationLoader.cs" />
+    <Compile Include="Pipeline\ObjectProcessor.cs" />
+    <Compile Include="Pipeline\SpriteAnimationLoader.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Lidgren.Network" />
+    <Reference Include="MonoGame.Framework.Windows, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\MonoGame.Framework.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Editor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\font.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
