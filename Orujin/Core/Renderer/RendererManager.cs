@@ -11,7 +11,6 @@ namespace Orujin.Core.Renderer
 {
     public class RendererManager
     {
-
         public const int ObjectLayer = 1;
         public const int LightLayer = 2;
         public const int LightBlockerLayer = 3;
