@@ -81,11 +81,11 @@ namespace Orujin
             List<InputCommand> input = this.inputManager.Update(elapsedTime);
             
             
-            this.conditionManager.Update(elapsedTime, this.gameObjectManager.GetGameObjects());
+            this.conditionManager.Update(elapsedTime, this.gameObjectManager.GetGameObjects("Level"));
 
             if (this.updateLogic)
             {
-                this.gameObjectManager.Update(elapsedTime, input);
+                this.gameObjectManager.Update(elapsedTime, input, "Level");
                 GameManager.game.world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
             }
             

@@ -72,6 +72,7 @@
     <Compile Include="Core\Camera\Camera.cs" />
     <Compile Include="Core\Input\MouseManager.cs" />
     <Compile Include="Core\Logic\ConditionManager.cs" />
+    <Compile Include="Framework\GameState.cs" />
     <Compile Include="Core\Physics\PixelCollisionManager.cs" />
     <Compile Include="Core\GameHelp\DynamicArray.cs" />
     <Compile Include="Core\Input\InputManager.cs" />

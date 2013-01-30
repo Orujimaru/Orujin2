@@ -13,43 +13,70 @@ namespace Orujin.Core.Logic
 {
     public class GameObjectManager
     {
-        private List<GameObject> gameObjects = new List<GameObject>();
-        private List<GameObject> garbageList = new List<GameObject>();
+        private struct GarbageObject
+        {
+            public string nameOfState;
+            public GameObject gameObject;
+        }
+
+        private List<GameState> gameStates = new List<GameState>();
+        private List<GarbageObject> garbageList = new List<GarbageObject>();
 
         public GameObjectManager()
         {
+
         }
 
-        public void Update(float elapsedTime, List<InputCommand> inputCommands)
+        public void Update(float elapsedTime, List<InputCommand> inputCommands, string nameOfState)
         {
-            for (int x = 0; x < this.gameObjects.Count(); x++)
+            foreach (GameState gs in this.gameStates)
             {
-                if (this.gameObjects[x].checkForInput)
+                if(gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
                 {
-                    this.CheckForInput(this.gameObjects[x], inputCommands);
-                }
-                
-                this.gameObjects[x].Update(elapsedTime);
-
-                if (this.gameObjects[x].checkForPixelCollision)
-                {
-                    //Check all objects infront
-                    for (int y = x + 1; y < this.gameObjects.Count(); y++)
+                    for (int x = 0; x < gs.gameObjects.Count(); x++)
                     {
-                        if (this.gameObjects[y].checkForPixelCollision)
+                        if (gs.gameObjects[x].checkForInput)
                         {
-                            this.CheckForPixelCollision(this.gameObjects[x], this.gameObjects[y]);
+                            this.CheckForInput(gs.gameObjects[x], inputCommands);
+                        }
+
+                        gs.gameObjects[x].Update(elapsedTime);
+
+                        if (gs.gameObjects[x].checkForPixelCollision)
+                        {
+                            //Check all objects infront
+                            for (int y = x + 1; y < gs.gameObjects.Count(); y++)
+                            {
+                                if (gs.gameObjects[y].checkForPixelCollision)
+                                {
+                                    this.CheckForPixelCollision(gs.gameObjects[x], gs.gameObjects[y]);
+                                }
+                            }
                         }
                     }
                 }
-
                 //Remove everything that is in the garbageList
-                foreach (GameObject garbage in this.garbageList)
+                foreach (GarbageObject garbage in this.garbageList)
                 {
-                    this.gameObjects.Remove(garbage);
+                    if(garbage.nameOfState.Equals(gs.name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        gs.gameObjects.Remove(garbage.gameObject);
+                    }
                 }
                 this.garbageList.Clear();
             }
+        }
+
+        public void AddGameState(string name)
+        {
+            this.gameStates.Add(new GameState(name));
+        }
+
+        public void AddGameState(string name, List<GameObject> gameObjects)
+        {
+            GameState temp = new GameState(name);
+            temp.gameObjects = gameObjects;
+            this.gameStates.Add(temp);
         }
 
         private void CheckForPixelCollision(GameObject objectA, GameObject objectB)
@@ -101,57 +128,94 @@ namespace Orujin.Core.Logic
             }
         }
 
-        public GameObject GetByName(string name)
+        public GameObject GetByName(string name, string nameOfState)
         {
-            foreach (GameObject go in this.gameObjects)
+            foreach (GameState gs in this.gameStates)
             {
-                if (go.identity.name.Equals(name))
+                if (gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
                 {
-                    return go;
+                    foreach (GameObject go in gs.gameObjects)
+                    {
+                        if (go.identity.name.Equals(name))
+                        {
+                            return go;
+                        }
+                    }
                 }
             }
             return null;
         }
 
-        public List<GameObject> GetByTag(string tag)
+        public List<GameObject> GetByTag(string tag, string nameOfState)
         {
-            List<GameObject> tempObjects = new List<GameObject>();
-            foreach (GameObject go in this.gameObjects)
+            foreach (GameState gs in this.gameStates)
             {
-                if (go.identity.tag.Equals(tag))
+                if (gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
                 {
-                    tempObjects.Add(go);
+                    List<GameObject> tempObjects = new List<GameObject>();
+                    foreach (GameObject go in gs.gameObjects)
+                    {
+                        if (go.identity.tag.Equals(tag))
+                        {
+                            tempObjects.Add(go);
+                        }
+                    }
+                    return tempObjects;
                 }
             }
-            return tempObjects;
+            return new List<GameObject>();         
         }
 
 
-        public bool Add(GameObject newObject)
+        public bool Add(GameObject newObject, string nameOfState)
         {
-            if (this.gameObjects.Contains(newObject))
+            foreach (GameState gs in this.gameStates)
             {
-                return false;
+                if(gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (gs.gameObjects.Contains(newObject))
+                    {
+                        return false;
+                    }
+
+                    gs.gameObjects.Add(newObject);
+                    return true;
+                }
             }
-
-            this.gameObjects.Add(newObject);
-            return true;
+           return false;
         }
 
-        public bool Remove(GameObject removeObject)
+        public bool Remove(GameObject removeObject, string nameOfState)
         {
-            if (this.gameObjects.Contains(removeObject))
+            foreach (GameState gs in this.gameStates)
             {
-                this.garbageList.Add(removeObject);
-                return true;
+                if(gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (gs.gameObjects.Contains(removeObject))
+                    {
+                        GarbageObject go = new GarbageObject();
+                        go.nameOfState = nameOfState;
+                        go.gameObject = removeObject;
+                        this.garbageList.Add(go);
+                        return true;
+                    }
+                }
             }
 
             return false;
         }
 
-        public List<GameObject> GetGameObjects()
+        public List<GameObject> GetGameObjects(string nameOfState)
         {
-            return this.gameObjects;
+            foreach (GameState gs in this.gameStates)
+            {
+                if(gs.name.Equals(nameOfState, StringComparison.OrdinalIgnoreCase))
+                {
+                    return gs.gameObjects;
+                }
+            }
+            return new List<GameObject>(); 
         }
+
     }
 }

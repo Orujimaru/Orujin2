@@ -28,6 +28,7 @@ namespace Orujin.Framework
         internal void Initialize(Orujin o)
         {
             orujin = o;
+            orujin.gameObjectManager.AddGameState("Level");
         }
 
         public virtual void Start()
@@ -41,19 +42,19 @@ namespace Orujin.Framework
         /*Attempts to add the GameObject to the game and returns true if it was successful and there are no duplicates*/
         public bool AddObject(GameObject gameObject)
         {
-            return orujin.gameObjectManager.Add(gameObject);
+            return orujin.gameObjectManager.Add(gameObject,"Level");
         } 
 
         /*Attempts to remove the GameObject from the game and returns true if it was successful, returns false if the GameObject wasn't found*/
         public bool RemoveObject(GameObject gameObject)
         {
-            return orujin.gameObjectManager.Remove(gameObject);
+            return orujin.gameObjectManager.Remove(gameObject,"Level");
         }
 
         /*Attempts to find a GameObject with the specific name, returns null if no GameObject with the name was found*/
         public GameObject FindObjectWithName(string name)
         {
-            return orujin.gameObjectManager.GetByName(name);
+            return orujin.gameObjectManager.GetByName(name, "Level");
         }
 
         internal CameraManager GetCameraManager()
@@ -64,7 +65,7 @@ namespace Orujin.Framework
         /*Attempts to find one or more GameObjects with a specific tag, returns an empty list if no GameObjects with the tag were found.*/
         public List<GameObject> FindObjectsWithTag(string tag)
         {
-            return orujin.gameObjectManager.GetByTag(tag);
+            return orujin.gameObjectManager.GetByTag(tag, "Level");
         }
 
         /*Adds a custom input command to the game*/
