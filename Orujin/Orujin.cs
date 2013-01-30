@@ -120,6 +120,16 @@ namespace Orujin
         {
             return ModularAnimationLoader.Load(name);
         }
+        
+        public void AddGameState(string name)
+        {
+            this.gameObjectManager.AddGameState(name);
+        }
+        
+        public void AddGameState(string name, List<GameObject> gameObjects)
+        {
+            this.gameObjectManager.AddGameState(name, gameObjects);
+        }
 
         public void LoadLevel(string fileName, ObjectProcessor op)
         {
