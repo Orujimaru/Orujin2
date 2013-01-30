@@ -82,11 +82,16 @@ namespace Orujin
             
             
             this.conditionManager.Update(elapsedTime, this.gameObjectManager.GetGameObjects(GameManager.game.activeState));
-
+            
             if (this.updateLogic)
             {
                 this.gameObjectManager.Update(elapsedTime, input, GameManager.game.activeState);
                 GameManager.game.world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
+                
+                if(GameManager.game.backgroundState != null && GameManager.game.runBackgroundState)
+                {
+                  this.gameObjectManager.Update(elapsedTime, input, GameManager.game.backgroundState);  
+                }
             }
             
             base.Update(gameTime);
