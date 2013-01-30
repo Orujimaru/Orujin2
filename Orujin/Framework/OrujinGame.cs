@@ -17,7 +17,9 @@ namespace Orujin.Framework
     {
         internal static Orujin orujin;
         public World world {get; internal set;}
-        public string activeState {get; protected set;}
+        public string activeState {get; private set;}
+        public string backgroundState {get; private set;}
+        public bool runBackgroundState {get; private set;}
         
         public string name;
         
@@ -25,6 +27,8 @@ namespace Orujin.Framework
         {
             this.world = new World(gravity);
             this.name = name;
+            this.backgroundState = null;
+            this.runBackgroundState = false;
         }
 
         internal void Initialize(Orujin o)
@@ -45,6 +49,27 @@ namespace Orujin.Framework
         {
         }
 
+        public void SetActiveState(string name)
+        {
+            if(this.backgroundState.Equals(name, StringComarision.OrdinalIgnoreCase))
+            {
+                this.backgroundState = null;
+                this.runBackgroundState = false;
+            }
+            this.activeState = name;
+        }
+        
+        public bool SetBackgroundState(string name, bool run)
+        {
+            if(this.activeState.Equals(name, StringComparison.OrdinalIgnoreCase))
+            {
+                //Can't set the active state to background state unless a new active state is given
+                return false;
+            }
+            this.backgroundState = name;
+            this.runBackgroundState = run;
+        }
+        
         /*Attempts to add the GameObject to the game and returns true if it was successful and there are no duplicates*/
         public bool AddObject(GameObject gameObject)
         {
