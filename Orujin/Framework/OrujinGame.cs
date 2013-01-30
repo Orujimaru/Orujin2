@@ -17,6 +17,8 @@ namespace Orujin.Framework
     {
         internal static Orujin orujin;
         public World world {get; internal set;}
+        public string activeState {get; protected set;}
+        
         public string name;
         
         public OrujinGame(string name, Vector2 gravity)
@@ -28,7 +30,11 @@ namespace Orujin.Framework
         internal void Initialize(Orujin o)
         {
             orujin = o;
-            orujin.gameObjectManager.AddGameState("Level");
+            if(activeState == null)
+            {
+                activeState = "Default"
+                orujin.AddGameState("Default");
+            }
         }
 
         public virtual void Start()
@@ -42,19 +48,34 @@ namespace Orujin.Framework
         /*Attempts to add the GameObject to the game and returns true if it was successful and there are no duplicates*/
         public bool AddObject(GameObject gameObject)
         {
-            return orujin.gameObjectManager.Add(gameObject,"Level");
+            return orujin.gameObjectManager.Add(gameObject, this.activeState);
+        } 
+        
+        public bool AddObject(GameObject gameObject, string gameState)
+        {
+            return orujin.gameObjectManager.Add(gameObject, gameState);
         } 
 
         /*Attempts to remove the GameObject from the game and returns true if it was successful, returns false if the GameObject wasn't found*/
         public bool RemoveObject(GameObject gameObject)
         {
-            return orujin.gameObjectManager.Remove(gameObject,"Level");
+            return orujin.gameObjectManager.Remove(gameObject, this.activeState);
+        }
+        
+        public bool RemoveObject(GameObject gameObject, string gameState)
+        {
+            return orujin.gameObjectManager.Remove(gameObject, gameState);
         }
 
         /*Attempts to find a GameObject with the specific name, returns null if no GameObject with the name was found*/
         public GameObject FindObjectWithName(string name)
         {
-            return orujin.gameObjectManager.GetByName(name, "Level");
+            return orujin.gameObjectManager.GetByName(name, this.activeState);
+        }
+        
+        public GameObject FindObjectWithName(string name, string gameState)
+        {
+            return orujin.gameObjectManager.GetByName(name, gameState);
         }
 
         internal CameraManager GetCameraManager()
@@ -65,10 +86,15 @@ namespace Orujin.Framework
         /*Attempts to find one or more GameObjects with a specific tag, returns an empty list if no GameObjects with the tag were found.*/
         public List<GameObject> FindObjectsWithTag(string tag)
         {
-            return orujin.gameObjectManager.GetByTag(tag, "Level");
+            return orujin.gameObjectManager.GetByTag(tag, this.activeState);
+        }
+        
+        public List<GameObject> FindObjectsWithTag(string tag, string gameState)
+        {
+            return orujin.gameObjectManager.GetByTag(tag, gameState);
         }
 
-        /*Adds a custom input command to the game*/
+        /*Adds a custom input command to the game. THIS SHOULD INCLUDE GAME STATE*/
         public void AddInputCommand(string objectName, string methodName, object[] parameters, Keys key, Buttons button)
         {
             orujin.inputManager.AddCommand(objectName, methodName, parameters, key, button);
