@@ -86,7 +86,7 @@ namespace Orujin.Core.Renderer
 
         public void Render(GameObjectManager gameObjectManager)
         {
-            List<GameObject> gameObjects = gameObjectManager.GetGameObjects("Level");
+            List<GameObject> gameObjects = gameObjectManager.GetGameObjects(GameManager.game.activeState);
 
             foreach (GameObject go in gameObjects)
             {
