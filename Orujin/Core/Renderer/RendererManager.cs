@@ -86,6 +86,15 @@ namespace Orujin.Core.Renderer
 
         public void Render(GameObjectManager gameObjectManager)
         {
+            if(GameManager.game.backgroundState != null)
+            {
+                List<GameObject> backgroundObjects = gameObjectManager.GetGameObjects(GameManager.game.backgroundState);
+                foreach (GameObject go in backgroundObjects)
+                {
+                    this.Render(go);
+                }
+            }
+            
             List<GameObject> gameObjects = gameObjectManager.GetGameObjects(GameManager.game.activeState);
 
             foreach (GameObject go in gameObjects)
